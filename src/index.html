@@ -8,17 +8,16 @@
 </head>
 <body>
     <header class="principal">
-        <div class="bt">
-            <button>Ver minha Pokedex</button>
-        </div>
-
         <div class="textoPrincipal">
             <h3>LISTA DE POKEMONS</h3>
+        </div>
+
+        <div class="bt">
+            <button>Ver minha Pokedex</button>
         </div>
     </header>
     
 <section>
-    <h4>Pokedex</h4>
 
     <div id="pokemon">
 
@@ -26,25 +25,51 @@
 </section>
 
 <script>
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20`)
-        .then(response => response.json())
-        .then(function(data) {
-            let div = document.getElementById("pokemon");
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151`)
+    .then(response => response.json())
+    .then(function(data) {
+        let div = document.getElementById("pokemon");
 
-            data.results.forEach(function(pokemon) {
-                fetch(pokemon.url)
-                    .then(response => response.json())
-                    .then(function(imagem) {
-                        let divPokemon = document.createElement('div');
-                        divPokemon.classList.add("lista");
-                        divPokemon.id = 'borda';
-                        divPokemon.innerHTML = `<img src="${imagem.sprites.other['official-artwork'].front_default}"><p>${pokemon.name}</p>`;
-                        div.appendChild(divPokemon);
-                    })
-                    .catch(err => console.log("erro: " + err));
-            });
-        })
-        .catch(err => console.log("erro: " + err));
+        data.results.forEach(function(pokemon) {
+            fetch(pokemon.url)
+                .then(response => response.json())
+                .then(function(poke) {
+                    let divPokemon = document.createElement('div');
+                    divPokemon.id = 'borda';
+                    
+                    let maiusculo = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+
+                    divPokemon.innerHTML = `<p>${maiusculo}</p><img src="${poke.sprites.front_default}">`
+
+                    let principalBotao = document.createElement('div')
+                    principalBotao.id = 'principalBotao'
+                    let geralBotao = document.createElement('div')
+                    geralBotao.id = 'todosBotoes'
+
+                    let adicionarButton = document.createElement('button');
+                    adicionarButton.id = 'btJs';
+
+                    adicionarButton.innerText = 'Adicionar';
+                    let excluirButton = document.createElement('button')
+                    excluirButton.id = 'btExcluirJs'
+                    excluirButton.innerText = 'Excluir'
+
+                    
+
+                    adicionarButton.addEventListener('click', function() {
+                        console.log('Botão Adicionar clicado para o Pokémon:', poke.name);
+                    });
+
+                    geralBotao.appendChild(adicionarButton)
+                    geralBotao.appendChild(excluirButton)
+                    divPokemon.appendChild(geralBotao)
+                    div.appendChild(divPokemon);
+                })
+                .catch(err => console.log("erro: " + err));
+        });
+    })
+    .catch(err => console.log("erro: " + err));
+
     </script>
 </body>
 </html>

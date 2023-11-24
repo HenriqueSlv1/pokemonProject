@@ -1,33 +1,119 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Poppins',sans-serif;
 }
 
 #pokemon {
+    margin: 0px 50px 0px 50px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 15px;
+    max-width: 100%;
+    padding: 60px;
+}
+
+p {
+    font-weight: bold;
 }
 
 #borda {
     display: flex;
+    flex-direction: column;
     align-items: center;
     border: 1px solid black;
+    border-radius: 20px;
 }
 
-header .principal {
+#borda button{
     display: flex;
-    justify-content: space-between;
+    cursor: pointer;
+    display: flex;
     align-items: center;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(87, 87, 87);
+    border-radius: 2px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#borda button:hover{
+    background-color:antiquewhite;
+    border-color: #000000;
+
+}
+
+img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%; 
+}
+
+#borda:hover {
+    transform: scale(1.05); 
+    transition: transform 0.4s ease;
+}
+
+/*dsfjaksdfçaksfjadsf*/
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ajuste para espaçar os elementos */
     padding: 10px;
+    background-color: #333; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto no cabeçalho */
+}
+
+header .textoPrincipal {
+    display: flex;
+    justify-content: center;
 }
 
 header .principal .bt {
     display: flex;
-    justify-content: center; 
-    align-items: center;
+    align-items: center; /* Alinha verticalmente o botão */
 }
 
-header .textoPrincipal {
-    text-align: center;
+header button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
+
+header button:hover {
+    background-color: #45a049;
+}
+
+#principalBotao{
+    display: flex;
+}
+
+#todosBotoes{
+    display: flex;
+    gap: 10px;
+    padding: 8px;
+    background-color: rgb(255, 255, 255);
+}
+
+#btJs{
+    display: flex;
+  color: red;
+  padding: 8px;
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid rgb(87, 87, 87);
+}
+
+#btExcluirJs{
+    display: flex;
+    color: green;
+    padding: 8px;
+    border: 1px solid rgb(87, 87, 87);
+}
+
