@@ -17,14 +17,30 @@
         </div>
     </header>
     
-<section>
+    <section id="pokemon">
 
-    <div id="pokemon">
-
-    </div>
-</section>
+    </section>
 
 <script>
+    //peguei as cor do pokemon.com
+    cores = {
+        fire: '#fd7d24',
+        grass: '#9bcc50',
+        electric: '#eed535',
+        water: '#4592c4',
+        ground: '#ab9842',
+        rock: '#a38c21',
+        fairy: '#fdb9e9',
+        poison: '#b97fc9',
+        bug: '#729f3f',
+        dragon: '#53a4cf',
+        psychic: '#f366b9',
+        flying: '#bdb9b8',
+        fighting: '#d56723',
+        normal: '#a4acaf',
+        ghost: '#7b62a3'
+    }
+    
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151`)
     .then(response => response.json())
     .then(function(data) {
@@ -36,29 +52,37 @@
                 .then(function(poke) {
                     let divPokemon = document.createElement('div');
                     divPokemon.id = 'borda';
+
+                    //deixa a primeira letra do nome e o tipo maiusculo
+                    let nomeMaiusculo = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+                    types = poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1);
                     
-                    let maiusculo = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+                    //troca a cor de fundo do pokemon
+                    let cor = cores[poke.types[0].type.name];
+                    divPokemon.style.backgroundColor = cor;
 
-                    divPokemon.innerHTML = `<p>${maiusculo}</p><img src="${poke.sprites.front_default}">`
+                    //isso aqui foi um cu de fazer pprt
+                    divPokemon.innerHTML = 
+                    `
+                        <div class="pokemons">
+                            <p id="id">#${poke.id}</p>
+                            <p id="nome">${nomeMaiusculo}</p>
+                            <p id="tipo">${types}</p>
+                        </div>
+                    <img src="${poke.sprites.front_default}">
+                    `
 
-                    let principalBotao = document.createElement('div')
-                    principalBotao.id = 'principalBotao'
+                    //botoes
                     let geralBotao = document.createElement('div')
                     geralBotao.id = 'todosBotoes'
 
                     let adicionarButton = document.createElement('button');
                     adicionarButton.id = 'btJs';
-
                     adicionarButton.innerText = 'Adicionar';
+
                     let excluirButton = document.createElement('button')
                     excluirButton.id = 'btExcluirJs'
                     excluirButton.innerText = 'Excluir'
-
-                    
-
-                    adicionarButton.addEventListener('click', function() {
-                        console.log('Botão Adicionar clicado para o Pokémon:', poke.name);
-                    });
 
                     geralBotao.appendChild(adicionarButton)
                     geralBotao.appendChild(excluirButton)
