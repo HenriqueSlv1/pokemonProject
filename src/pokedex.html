@@ -13,16 +13,12 @@
         </div>
 
         <div class="bt">
-            <button><a href="pokedex.html">Ver minha Pokedex</a></button>
+            <button><a href="index.html">Voltar para Pokedex</a></button>
         </div>
     </header>
 
-    <section id="pokemon">
-
-    </section>
-
-<script>
-    cores = {
+    <script>
+          cores = {
         fire: '#fd7d24',
         grass: '#9bcc50',
         electric: '#eed535',
@@ -37,8 +33,7 @@
         flying: '#bdb9b8',
         fighting: '#d56723',
         normal: '#a4acaf',
-        ghost: '#7b62a3',
-        steel: ''
+        ghost: '#7b62a3'
     }
     
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=500`)
@@ -83,11 +78,6 @@
         });
     })
     .catch(err => console.log("erro: " + err));
-    //Tira o pokemon da pokedex
-        function adiciona(id) {
-                const div = document.getElementById(`pokemon${id}`)
-                div.remove()
-            }
     </script>
 </body>
 </html>

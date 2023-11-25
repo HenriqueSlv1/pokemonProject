@@ -4,8 +4,9 @@
     font-family: 'Poppins',sans-serif;
 }
 
-body {
-
+a {
+    text-decoration: none;
+    color: white;
 }
 
 #pokemon {
@@ -42,7 +43,7 @@ p {
     font-weight: bold;
 }
 
-#borda {
+.borda {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,12 +52,12 @@ p {
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-#borda:hover {
+.borda:hover {
     transform: scale(1.05); 
     transition: transform 0.4s ease;
 }
 
-#borda button{
+.borda button{
     cursor: pointer;
     color: rgb(0, 0, 0);
     padding: 8px;
@@ -66,10 +67,9 @@ p {
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-#borda button:hover{
+.borda button:hover{
     background-color:antiquewhite;
     border-color: #000000;
-
 }
 
 header {
@@ -79,16 +79,6 @@ header {
     padding: 10px;
     background-color: #333;
     color: white;
-}
-
-header .textoPrincipal {
-    display: flex;
-    justify-content: center;
-}
-
-header .principal .bt {
-    display: flex;
-    align-items: center;
 }
 
 header button {
@@ -105,10 +95,6 @@ header button:hover {
     background-color: #45a049;
 }
 
-#principalBotao{
-    display: flex;
-}
-
 #todosBotoes{
     display: flex;
     gap: 10px;
@@ -117,16 +103,13 @@ header button:hover {
 
 #btJs{
     display: flex;
-  color: red;
-  padding: 8px;
-  background-color: white;
-  border-radius: 2px;
-  border: 1px solid rgb(87, 87, 87);
+    padding: 8px;
+    border-radius: 2px;
+    border: 1px solid rgb(87, 87, 87);
 }
 
 #btExcluirJs{
     display: flex;
-    color: green;
     padding: 8px;
     border: 1px solid rgb(87, 87, 87);
 }
