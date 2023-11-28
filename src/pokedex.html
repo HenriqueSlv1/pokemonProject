@@ -17,6 +17,10 @@
         </div>
     </header>
 
+    <section id="pokemon">
+
+    </section>
+
     <script>
           cores = {
         fire: '#fd7d24',
@@ -35,49 +39,47 @@
         normal: '#a4acaf',
         ghost: '#7b62a3'
     }
-    
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=500`)
-    .then(response => response.json())
-    .then(function(data) {
-        let div = document.getElementById("pokemon");
 
-        data.results.forEach(function(pokemon) {
-            fetch(pokemon.url)
+    const storedArray = sessionStorage.getItem('arrayPokemons')
+    const arrayPokemons = storedArray ? JSON.parse(storedArray) : [];
+
+    console.log(arrayPokemons)
+
+    let div = document.getElementById("pokemon");
+
+    arrayPokemons.forEach(function(id) {
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
                 .then(response => response.json())
                 .then(function(poke) {
                     let divPokemon = document.createElement('div');
                     divPokemon.classList = 'borda';
 
-                    //deixa a primeira letra do nome e o tipo maiusculo
-                    let nomeMaiusculo = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-                    let tipos = poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1);
-
-                    //troca a cor de fundo do pokemon
+                    let nomeMaiusculo = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
+                    let tipo = poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1);
                     let cor = cores[poke.types[0].type.name];
+
                     divPokemon.style.backgroundColor = cor;
 
-                    //isso aqui foi um cu de fazer pprt
-                    divPokemon.id= `pokemon${poke.id}`
                     divPokemon.innerHTML = 
                     `
                     <div class="pokemons">
                         <p id="id">#${poke.id}</p>
                         <p id="nome">${nomeMaiusculo}</p>
-                        <p id="tipo">${tipos}</p>
+                        <p id="tipo">${tipo}</p>
                     </div>
+                    <div id=imagem>
                     <img src="${poke.sprites.front_default}">
+                    </div>
 
-                    <div id=todosBotoes>
+                    <div id="todosBotoes">
                         <button id="btJs" onClick="adiciona(${poke.id})">Adicionar</button>
                         <button id="btExcluirJs">Detalhes</button>
-                        </div>
-                    `
+                    </div>
+                    `;
                     div.appendChild(divPokemon);
                 })
-                .catch(err => console.log("erro: " + err));
+                .catch(err => console.log("Erro: " + err));
         });
-    })
-    .catch(err => console.log("erro: " + err));
     </script>
 </body>
 </html>

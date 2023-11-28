@@ -25,6 +25,11 @@ a {
     width: 100%;
 }
 
+#imagem {
+    background-color: white;
+    border-radius: 100%;
+}
+
 .pokemons #id {
     justify-self: start;
     padding-left: 10px;

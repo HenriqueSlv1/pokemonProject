@@ -70,7 +70,9 @@
                         <p id="nome">${nomeMaiusculo}</p>
                         <p id="tipo">${tipos}</p>
                     </div>
+                    <div id=imagem>
                     <img src="${poke.sprites.front_default}">
+                    </div>
 
                     <div id=todosBotoes>
                         <button id="btJs" onClick="adiciona(${poke.id})">Adicionar</button>
@@ -83,10 +85,15 @@
         });
     })
     .catch(err => console.log("erro: " + err));
+
     //Tira o pokemon da pokedex
+    var arrayPokemons = [];
         function adiciona(id) {
                 const div = document.getElementById(`pokemon${id}`)
                 div.remove()
+                arrayPokemons.push(id)
+                sessionStorage.setItem('arrayPokemons',JSON.stringify(arrayPokemons))
+                console.log(arrayPokemons)
             }
     </script>
 </body>
