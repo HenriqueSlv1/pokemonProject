@@ -6,6 +6,9 @@
 
 a {
     text-decoration: none;
+}
+
+header a {
     color: white;
 }
 
@@ -114,7 +117,12 @@ header button:hover {
 }
 
 #btExcluirJs{
+    text-decoration: none;
     display: flex;
     padding: 8px;
     border: 1px solid rgb(87, 87, 87);
+}
+
+#btExcluirJs a{
+    color: black;
 }

@@ -38,10 +38,21 @@
         fighting: '#d56723',
         normal: '#a4acaf',
         ghost: '#7b62a3',
-        steel: ''
+        steel: '#9eb7b8',
+        dark: '#707070',
+        ice: '#51c4e7'
     }
     
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=500`)
+    const storedArray = sessionStorage.getItem('arrayPokemons')
+    let arrayPokemons;
+
+    if (storedArray) {
+        arrayPokemons = JSON.parse(storedArray);
+    } else {
+        arrayPokemons = [];
+    }
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`)
     .then(response => response.json())
     .then(function(data) {
         let div = document.getElementById("pokemon");
@@ -61,7 +72,7 @@
                     let cor = cores[poke.types[0].type.name];
                     divPokemon.style.backgroundColor = cor;
 
-                    //isso aqui foi um cu de fazer pprt
+                    //aparece os quadradinho do pokemon
                     divPokemon.id= `pokemon${poke.id}`
                     divPokemon.innerHTML = 
                     `
@@ -76,10 +87,16 @@
 
                     <div id=todosBotoes>
                         <button id="btJs" onClick="adiciona(${poke.id})">Adicionar</button>
-                        <button id="btExcluirJs">Detalhes</button>
-                        </div>
+                        <button id="btExcluirJs"><a href="detalhes.html">Detalhes</a></button>
+                    </div>
                     `
                     div.appendChild(divPokemon);
+
+                    //nao aparece mais a div do pokemon adicionado na pokedex
+                    for(let i = 0; i < arrayPokemons.length; i++) {
+                        let divpoke = document.getElementById(`pokemon${arrayPokemons[i]}`)
+                        divpoke.style.display = 'none'
+                    }
                 })
                 .catch(err => console.log("erro: " + err));
         });
@@ -87,13 +104,11 @@
     .catch(err => console.log("erro: " + err));
 
     //Tira o pokemon da pokedex
-    var arrayPokemons = [];
         function adiciona(id) {
                 const div = document.getElementById(`pokemon${id}`)
                 div.remove()
                 arrayPokemons.push(id)
                 sessionStorage.setItem('arrayPokemons',JSON.stringify(arrayPokemons))
-                console.log(arrayPokemons)
             }
     </script>
 </body>
