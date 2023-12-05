@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <title>Detalhes</title>
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <header class="principal">
@@ -18,30 +47,76 @@
     </header>
 
     <section id="pokemon">
-
+        <!-- Botão com tooltip para exibir detalhes -->
+        <div class="tooltip">
+            <button id="btDetalhes">Detalhes</button>
+            <span class="tooltiptext" id="tooltipDetalhes">Clique para ver os detalhes</span>
+        </div>
     </section>
 
-<script>
-    cores = {
-        fire: '#fd7d24',
-        grass: '#9bcc50',
-        electric: '#eed535',
-        water: '#4592c4',
-        ground: '#ab9842',
-        rock: '#a38c21',
-        fairy: '#fdb9e9',
-        poison: '#b97fc9',
-        bug: '#729f3f',
-        dragon: '#53a4cf',
-        psychic: '#f366b9',
-        flying: '#bdb9b8',
-        fighting: '#d56723',
-        normal: '#a4acaf',
-        ghost: '#7b62a3',
-        steel: '#9eb7b8',
-        dark: '#707070',
-        ice: '#51c4e7'
-    }
+    <script>
+        const cores = {
+            fogo: '#fd7d24',
+            grama: '#9bcc50',
+            elétrico: '#eed535',
+            água: '#4592c4',
+            terrestre: '#ab9842',
+            pedra: '#a38c21',
+            fada: '#fdb9e9',
+            veneno: '#b97fc9',
+            inseto: '#729f3f',
+            dragão: '#53a4cf',
+            psíquico: '#f366b9',
+            voador: '#bdb9b8',
+            lutador: '#d56723',
+            normal: '#a4acaf',
+            fantasma: '#7b62a3',
+            aço: '#9eb7b8',
+            sombrio: '#707070',
+            gelo: '#51c4e7'
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const pokemonId = params.get('id');
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+            .then(response => response.json())
+            .then(function(poke) {
+                let divPokemon = document.createElement('div');
+                divPokemon.classList = 'borda';
+
+                let nomeMaiusculo = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
+                let tipo = poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1);
+                let cor = cores[poke.types[0].type.name];
+
+                divPokemon.style.backgroundColor = cor;
+
+                divPokemon.id = `pokemon${poke.id}`
+                divPokemon.innerHTML =
+                    `
+                    <div class="pokemons">
+                        <p id="id">#${poke.id}</p>
+                        <p id="nome">${nomeMaiusculo}</p>
+                        <p id="tipo">${tipo}</p>
+                    </div>
+                    <div id=imagem>
+                        <img src="${poke.sprites.front_default}">
+                    </div>
+                    <div id="todosBotoes">
+                        <div class="tooltip">
+                            <button id="btJs" onClick="exibirDetalhes()">Detalhes</button>
+                            <span class="tooltiptext" id="tooltipDetalhes">Clique para ver os detalhes</span>
+                        </div>
+                    </div>
+                    `;
+                document.getElementById("pokemon").appendChild(divPokemon);
+            })
+            .catch(err => console.log("Erro: " + err));
+
+        // Função para exibir o tooltip com detalhes
+        function exibirDetalhes() {
+            alert("Detalhes do Pokémon:\n\nID: #" + poke.id + "\nNome: " + nomeMaiusculo + "\nTipo: " + tipo);
+        }
     </script>
 </body>
 </html>

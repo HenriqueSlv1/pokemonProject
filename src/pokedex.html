@@ -18,45 +18,43 @@
     </header>
 
     <section id="pokemon">
-
+ 
     </section>
 
-<script>
-    cores = {
-        fire: '#fd7d24',
-        grass: '#9bcc50',
-        electric: '#eed535',
-        water: '#4592c4',
-        ground: '#ab9842',
-        rock: '#a38c21',
-        fairy: '#fdb9e9',
-        poison: '#b97fc9',
-        bug: '#729f3f',
-        dragon: '#53a4cf',
-        psychic: '#f366b9',
-        flying: '#bdb9b8',
-        fighting: '#d56723',
-        normal: '#a4acaf',
-        ghost: '#7b62a3',
-        steel: '#9eb7b8',
-        dark: '#707070',
-        ice: '#51c4e7'
-    }
+    <script>
+        const cores = {
+            fire: '#fd7d24',
+            grass: '#9bcc50',
+            electric: '#eed535',
+            water: '#4592c4',
+            ground: '#ab9842',
+            rock: '#a38c21',
+            fairy: '#fdb9e9',
+            poison: '#b97fc9',
+            bug: '#729f3f',
+            dragon: '#53a4cf',
+            psychic: '#f366b9',
+            flying: '#bdb9b8',
+            fighting: '#d56723',
+            normal: '#a4acaf',
+            ghost: '#7b62a3',
+            steel: '#9eb7b8',
+            dark: '#707070',
+            ice: '#51c4e7'
+        }
 
-    const storedArray = sessionStorage.getItem('arrayPokemons')
-    let arrayPokemons;
+        const storedArray = sessionStorage.getItem('arrayPokemons')
+        let arrayPokemons;
 
-    if (storedArray) {
-        arrayPokemons = JSON.parse(storedArray);
-    } else {
-        arrayPokemons = [];
-    }
+        if (storedArray) {
+            arrayPokemons = JSON.parse(storedArray);
+        } else {
+            arrayPokemons = [];
+        }
 
-    console.log(arrayPokemons)
+        let div = document.getElementById("pokemon");
 
-    let div = document.getElementById("pokemon");
-
-    arrayPokemons.forEach(function(id) {
+        arrayPokemons.forEach(function(id) {
             fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
                 .then(response => response.json())
                 .then(function(poke) {
@@ -69,33 +67,40 @@
 
                     divPokemon.style.backgroundColor = cor;
 
-                    divPokemon.id= `pokemon${poke.id}`
-                    divPokemon.innerHTML = 
-                    `
-                    <div class="pokemons">
-                        <p id="id">#${poke.id}</p>
-                        <p id="nome">${nomeMaiusculo}</p>
-                        <p id="tipo">${tipo}</p>
-                    </div>
-                    <div id=imagem>
-                    <img src="${poke.sprites.front_default}">
-                    </div>
+                    divPokemon.id = `pokemon${poke.id}`
+                    divPokemon.innerHTML =
+                        `
+                        <div class="pokemons">
+                            <p id="id">#${poke.id}</p>
+                            <p id="nome">${nomeMaiusculo}</p>
+                            <p id="tipo">${tipo}</p>
+                        </div>
+                        <div id=imagem>
+                            <img src="${poke.sprites.front_default}">
+                        </div>
 
-                    <div id="todosBotoes">
-                        <button id="btJs" onClick="remove(${poke.id})">Remover</button>
-                        <button id="btExcluirJs">Detalhes</button>
-                    </div>
-                    `;
+                        <div id="todosBotoes">
+                            <button id="btJs" onClick="remove(${poke.id})">Remover</button>
+                            <button id="btExcluirJs" onClick="exibirDetalhes(${poke.id}, '${nomeMaiusculo}', '${tipo}', '${cor}')">Detalhes</button>
+                        </div>
+                        `;
                     div.appendChild(divPokemon);
                 })
                 .catch(err => console.log("Erro: " + err));
         });
 
         function remove(id) {
-            const div = document.getElementById(`pokemon${id}`)
-            div.remove()
-            
-            sessionStorage.setItem('arrayPokemons',JSON.stringify(arrayPokemons))
+            const index = arrayPokemons.indexOf(id);
+            if (index !== -1) {
+                arrayPokemons.splice(index, 1);
+                const div = document.getElementById(`pokemon${id}`);
+                div.remove();
+                sessionStorage.setItem('arrayPokemons', JSON.stringify(arrayPokemons));
+            }
+        }
+
+        function exibirDetalhes(id, nome, tipo, cor) {
+            alert(`Detalhes do Pokémon:\n\nID: #${id}\nNome: ${nome}\nTipo: ${tipo}\nCor: ${cor}`);
         }
     </script>
 </body>
