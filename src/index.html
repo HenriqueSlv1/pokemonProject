@@ -85,10 +85,12 @@
                     <img src="${poke.sprites.front_default}">
                     </div>
 
-                    <div id=todosBotoes>
+                    <div id=todosBotoes>    
                         <button id="btJs" onClick="adiciona(${poke.id})">Adicionar</button>
+                        <button id="btExcluirJs" onClick="detalhar(${poke.id})"><a href="detalhes.html">Detalhes</a</button>
                     </div>
-                    `
+                    `;
+
                     div.appendChild(divPokemon);
 
                     //nao aparece mais a div do pokemon adicionado na pokedex
@@ -110,8 +112,10 @@
                 sessionStorage.setItem('arrayPokemons',JSON.stringify(arrayPokemons))
             }
 
-            //                        <button id="btExcluirJs"><a href="detalhes.html">Detalhes</a></button>
-
+        function detalhar(id) {
+            let pokeDetalhes = id
+            sessionStorage.setItem('pokeDetalhes',JSON.stringify(pokeDetalhes))
+        }
     </script>
 </body>
 </html>
