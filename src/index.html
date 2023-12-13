@@ -7,14 +7,10 @@
     <title>Pokédex</title>
 </head>
 <body>
-    <header class="principal">
-        <div class="textoPrincipal">
-            <h3>LISTA DE POKÉMONS</h3>
-        </div>
+    <header>
+        <h3 id="titulo">Pokemon</h3>
 
-        <div class="bt">
-            <button><a href="pokedex.html">Ver minha Pokédex</a></button>
-        </div>
+        <button id="pokedex"><a href="index.html">Voltar para Pokédex</a></button>
     </header>
 
     <section id="pokemon">
@@ -111,7 +107,6 @@
                 arrayPokemons.push(id)
                 sessionStorage.setItem('arrayPokemons',JSON.stringify(arrayPokemons))
             }
-
         function detalhar(id) {
             let pokeDetalhes = id
             sessionStorage.setItem('pokeDetalhes',JSON.stringify(pokeDetalhes))

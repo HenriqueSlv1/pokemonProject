@@ -7,18 +7,14 @@
     <title>Detalhes</title>
 </head>
 <body>
-    <header class="principal">
-        <div class="textoPrincipal">
-            <h3>Pokemon</h3>
-        </div>
+    <header>
+            <h3 id="titulo">Pokemon</h3>
 
-        <div class="bt">
-            <button><a href="index.html">Voltar para Pokédex</a></button>
-        </div>
+            <button id="pokedex"><a href="index.html">Voltar para Pokédex</a></button>
     </header>
 
     <section id="pokemonD">
-        
+
     </section>
 
     <script>
@@ -56,8 +52,10 @@
                 divPokemon.classList = 'bordas';
 
                 let nomeMaiusculo = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
-                let tipo = poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1);
                 let cor = cores[poke.types[0].type.name];
+
+                let weight = poke.weight / 10;
+                let height = poke.height / 10;
 
                 let hp = poke.stats.find(stat => stat.stat.name === 'hp').base_stat;
 
@@ -71,14 +69,12 @@
 
                 let speed  = poke.stats.find(stat => stat.stat.name === 'speed').base_stat
 
-                let movimentos = poke.moves.slice(0, 4).map(move => move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1));
+                let movimentos = poke.moves.slice(0, 6).map(move => move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1));
 
+                divPokemon.style.backgroundColor = cor;
 
-
-
-                //let hp = poke.
-
-
+                let tipos = poke.types.map((type) => `<p>${type.type.name}</p>`);
+                tipos = tipos.join('');
 
                 divPokemon.id = `pokemon${poke.id}`
                 divPokemon.innerHTML =
@@ -88,25 +84,25 @@
                             <img src="${poke.sprites.back_default}">
                         </div>
                         <div class="pokemonDe">
-                            <h1>Status:</h1>
+                            <h1>Detalhes: </h1>
                             <p id="nome">Nome: ${nomeMaiusculo}</p>
-                            <p id="tipo">Tipo: ${tipo}</p>
+                            <p>Peso: ${height}kg | Altura: ${weight}m</p>
+                            <h1>Status:</h1>
                             <p id="hp">HP: ${hp}</p>
                             <p id="attack">Ataque: ${attack}</p>
                             <p id="defense">Defesa: ${defense}</p>
                             <p id="special-attack">Ataque Especial: ${special_attack}</p>
                             <p id="special-defense">Defesa Especial: ${special_defense}</p>
                             <p id="speed">Velocidade: ${speed}</p>
-
-
-
                         </div>
                         <div id="moves"> 
-                            <p>Movimentos: </p>
-                            <br>
+                            <h1>Tipos:</h1>${tipos.toUpperCase()}
+                            <h1>Movimentos:</h1>
                             <p id="movimentos">${movimentos[0]}</p>
                             <p id="movimentos">${movimentos[1]}</p>
                             <p id="movimentos">${movimentos[2]}</p>
+                            <p id="movimentos">${movimentos[3]}</p>
+                            <p id="movimentos">${movimentos[4]}</p>
                         </div>                    
                         `
                 document.getElementById("pokemonD").appendChild(divPokemon);

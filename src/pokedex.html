@@ -13,7 +13,7 @@
         </div>
 
         <div class="bt">
-            <button><a href="index.html">Voltar para Pokédex</a></button>
+            <button><a href="index.html">Pokédex</a></button>
         </div>
     </header>
 
@@ -81,7 +81,7 @@
 
                         <div id="todosBotoes">
                             <button id="btJs" onClick="remove(${poke.id})">Remover</button>
-                            <button id="btExcluirJs" onClick="exibirDetalhes(${poke.id}, '${nomeMaiusculo}', '${tipo}', '${cor}')">Detalhes</button>
+                            <button id="btExcluirJs" onClick="detalhar(${poke.id})"><a href="detalhes.html">Detalhes</a></button>
                         </div>
                         `;
                     div.appendChild(divPokemon);

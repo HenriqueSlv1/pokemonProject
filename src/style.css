@@ -12,8 +12,6 @@ header a {
     color: white;
 }
 
-
-
 #pokemon {
     margin: 0px 50px 0px 50px;
     display: grid;
@@ -28,6 +26,10 @@ header a {
     grid-gap: 10px;
     padding: 10px;
     width: 100%;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
 }
 
 #imagem {
@@ -57,9 +59,9 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 20px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 8px 16px rgba(177, 177, 177, 0.4);
 }
 
 .borda:hover {
@@ -83,9 +85,6 @@ p {
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 10px;
     background-color: #333;
     color: white;
@@ -140,53 +139,27 @@ a {
     color: rgb(255, 255, 255);
 }
 
-
 /*---------------------------DETALHES----------------------------*/
 
 .pokemonDe {
     display: flex;
     flex-direction: column;
-    
     gap: 13px;
     align-self: center;
 }
 
-.pokemonDe h1{
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    width: 20%;
-    transition: background-color 0.3s;
-}
-
-.pokemonDe p{
-    padding: 5px;
-    background-color: #4a4a4a;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 40%;
-    transition: background-color 0.3s;
-}
-
-.pokemonDe p:hover{
-    background-color: aquamarine;
-}
-
 .bordas {
     display: grid;
+    background-color: rgba(255, 255, 255, 0.5);
     grid-template-columns: 1fr 1fr 1fr;
-
-
     grid-gap: 10px;
     margin: 70px;
     border-radius: 20px;
-    border: solid black 1px;
+    border: solid rgb(255, 255, 255) 1.5px;
+}
+
+#imagens img {
+    background-color: rgb(243, 243, 243);
 }
 
 #imagens {
@@ -195,7 +168,9 @@ a {
     flex-direction: column;
     justify-self: center;
     justify-content: center;
-    grid-gap: 
+    padding-bottom: 10px;
+    padding-top: 10px;
+    gap: 10px;
 }
 
 #imagens img {
@@ -208,4 +183,16 @@ a {
     flex-direction: column;
     gap: 12px;
     align-self: center;
+}
+
+#pokedex {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
