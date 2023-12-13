@@ -19,6 +19,7 @@ cores = {
     ice: '#51c4e7'
 }
 
+
 const armazenarArray = sessionStorage.getItem('arrayPokemons')
 let arrayPokemons;
 
@@ -40,15 +41,12 @@ fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`)
                     let divPokemon = document.createElement('div');
                     divPokemon.classList = 'borda';
 
-                    //deixa a primeira letra do nome e o tipo maiusculo
                     let nomeMaiusculo = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
                     let tipos = poke.types[0].type.name.charAt(0).toUpperCase() + poke.types[0].type.name.slice(1);
 
-                    //troca a cor de fundo do pokemon
                     let cor = cores[poke.types[0].type.name];
                     divPokemon.style.backgroundColor = cor;
 
-                    //aparece os quadradinho dos pokemons
                     divPokemon.id = `pokemon${poke.id}`
                     divPokemon.innerHTML =
                         `
@@ -62,14 +60,13 @@ fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`)
                 </div>
 
                 <div id=todosBotoes>    
-                    <button id="btJs" onClick="adiciona(${poke.id})">Adicionar</button>
-                    <button id="btExcluirJs" onClick="detalhar(${poke.id})"><a href="detalhes.html">Detalhes</a</button>
+                    <button id="botaoAdicionar" onClick="adiciona(${poke.id})">Adicionar</button>
+                    <button id="botaoExcluir" onClick="detalhar(${poke.id})"><a href="detalhes.html">Detalhes</a</button>
                 </div>
                 `;
 
                     div.appendChild(divPokemon);
 
-                    //nao aparece mais a div do pokemon adicionado na pokedex
                     for (let i = 0; i < arrayPokemons.length; i++) {
                         let divpoke = document.getElementById(`pokemon${arrayPokemons[i]}`)
                         divpoke.style.display = 'none'
@@ -80,7 +77,6 @@ fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`)
     })
     .catch(err => console.log("erro: " + err));
 
-//tira o pokemon da pokedex
 function adiciona(id) {
     const div = document.getElementById(`pokemon${id}`)
     div.remove()
@@ -88,7 +84,6 @@ function adiciona(id) {
     sessionStorage.setItem('arrayPokemons', JSON.stringify(arrayPokemons))
 }
 
-//leva o id do pokemon pros detalhes
 function detalhar(id) {
     let pokeDetalhes = id
     sessionStorage.setItem('pokeDetalhes', JSON.stringify(pokeDetalhes))

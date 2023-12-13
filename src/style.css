@@ -112,7 +112,7 @@ p {
     padding: 8px;
 }
 
-#todosBotoes #btJs {
+#todosBotoes #botaoAdicionar {
     background-color: #3b5067;
     color: white;
     border-radius: 12px;
@@ -123,7 +123,7 @@ a {
     color: white;
 }
 
-#btExcluirJs {
+#botaoExcluir {
     text-decoration: none;
     background-color: #3b5067;
     color: white;
@@ -131,17 +131,15 @@ a {
     border: 1.5px solid rgb(251, 251, 251);
 }
 
-#todosBotoes #btJs:hover {
+#todosBotoes #botaoAdicionar:hover {
     background-color: #373737;
     color: rgb(255, 255, 255);
 }
 
-#todosBotoes #btExcluirJs:hover {
+#todosBotoes #botaoExcluir:hover {
     background-color: #373737;
     color: rgb(255, 255, 255);
 }
-
-/*---------------------------DETALHES----------------------------*/
 
 .pokemonDe {
     display: flex;

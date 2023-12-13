@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
 
                     <div id="todosBotoes">
-                        <button id="btJs" onClick="remove(${poke.id})">Remover</button>
-                        <button id="btExcluirJs" onClick="detalhar(${poke.id})"><a href="detalhes.html">Detalhes</a></button>
+                        <button id="botaoAdicionar" onClick="remove(${poke.id})">Remover</button>
+                        <button id="botaoExcluir" onClick="detalhar(${poke.id})"><a href="detalhes.html">Detalhes</a></button>
                     </div>
                     `;
                 div.appendChild(divPokemon);
