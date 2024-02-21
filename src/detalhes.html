@@ -23,24 +23,9 @@
 
     <script>
         cores = {
-            fire: '#fd7d24',
-            grass: '#9bcc50',
-            electric: '#eed535',
-            water: '#4592c4',
-            ground: '#ab9842',
-            rock: '#a38c21',
-            fairy: '#fdb9e9',
-            poison: '#b97fc9',
-            bug: '#729f3f',
-            dragon: '#53a4cf',
-            psychic: '#f366b9',
-            flying: '#bdb9b8',
-            fighting: '#d56723',
-            normal: '#a4acaf',
-            ghost: '#7b62a3',
-            steel: '#9eb7b8',
-            dark: '#707070',
-            ice: '#51c4e7'
+            fighting: '#d56723', normal: '#a4acaf', ghost: '#7b62a3', steel: '#9eb7b8', dark: '#707070', ice: '#51c4e7',
+            fire: '#fd7d24', grass: '#9bcc50', electric: '#eed535', water: '#4592c4', ground: '#ab9842', rock: '#a38c21',
+            fairy: '#fdb9e9', poison: '#b97fc9', bug: '#729f3f', dragon: '#53a4cf', psychic: '#f366b9', flying: '#bdb9b8'
         }
 
         const armazenarArray = sessionStorage.getItem('arrayPokemons')
@@ -89,21 +74,15 @@
 
                 document.getElementById('titulo').innerText = `${nomeMaiusculo}`;
 
-                let weight = poke.weight / 10;
-                let height = poke.height / 10;
+                let peso = poke.weight / 10;
+                let altura = poke.height / 10;
 
-                let hp = poke.stats.find(stat => stat.stat.name === 'hp').base_stat;
-
+                let hp = poke.stats.find(stat => stat.stat.name === 'hp').base_stat;/*Aqui, está sendo usado o método find para encontrar o objeto de stat com o nome 'hp'.    */
                 let attack = poke.stats.find(stat => stat.stat.name === 'attack').base_stat;
-
                 let defense = poke.stats.find(stat => stat.stat.name === 'defense').base_stat;
-
                 let special_attack = poke.stats.find(stat => stat.stat.name === 'special-attack').base_stat;
-
                 let special_defense = poke.stats.find(stat => stat.stat.name === 'special-defense').base_stat;
-
                 let speed = poke.stats.find(stat => stat.stat.name === 'speed').base_stat;
-
                 let movimentos = poke.moves.slice(0, 6).map(move => move.move.name.charAt(0).toUpperCase() + move.move.name.slice(1));
 
                 divPokemon.style.backgroundColor = cor;
@@ -121,7 +100,7 @@
                     <div class="pokemonDe">
                         <h1>Detalhes: </h1>
                         <p id="nome">Nome: ${nomeMaiusculo}</p>
-                        <p>Peso: ${height}kg | Altura: ${weight}m</p>
+                        <p>Peso: ${peso}kg | Altura: ${altura}m</p>
                         <h1>Status:</h1>
                         <p id="hp">HP: ${hp}</p>
                         <p id="attack">Ataque: ${attack}</p>

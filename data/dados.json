@@ -1,0 +1,9 @@
+{
+    "Pokemon": [
+      {
+        "id": 1,
+        "nome": "sla",
+        "tipo": "tanto"
+      }
+    ] 
+}
